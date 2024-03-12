@@ -1,7 +1,30 @@
-{% extends "layout@1-root.html" %}
+{% extends "layout@base.html" %}
 
 {% block content %}
-<main>
-  <h2 class="text-center h3">Page</h2>
+<main class="min-h-screen w-screen pt-20">
+  <section class="p-5 mx-auto flex flex-col items-center">
+    <h1 class="bg-gradient-to-r from-[#0d6efd] to-[#6610f2] bg-clip-text text-transparent text-7xl pb-4 font-bold">
+      Mangetsu
+    </h1>
+    <div class="mt-20 grid md:grid-cols-3 md:w-auto w-full grid-cols-1 gap-4">
+      <a href="/api/oauth2/github">
+        <button
+          class="btn btn-lg w-full !font-bold btn-primary shadow-black hover:shadow-white shadow-xl transition-all duration-500 hover:shadow-sm">
+          Authenticate
+        </button>
+      </a>
+      <a href="/users">
+        <button
+          class="btn btn-lg w-full !bg-[#6610f2] !border-[#6610f2] !font-bold btn-primary shadow-black hover:shadow-white shadow-xl transition-all duration-500 hover:shadow-sm">
+          Users
+        </button>
+      </a>
+      <a href="https://github.com/dehwyy/mangetsu" target="_blank">
+        <button
+          class="btn btn-lg w-full !font-bold btn-primary shadow-black hover:shadow-white shadow-xl transition-all duration-500 hover:shadow-sm">
+          Project repository
+        </button>
+      </a>
+    </div>
 </main>
 {% endblock %}

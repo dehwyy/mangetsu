@@ -1,0 +1,19 @@
+{% extends "layout@base.html" %}
+
+{% block content %}
+<main class="min-h-screen w-screen pt-20">
+  <section class="max-w-[95%] w-[800px] flex mx-auto">
+    <div
+      class="w-[200px] card shadow-xl shadow-black bg-black rounded-xl overflow-hidden hover:scale-105 transition-all">
+      <img
+        src="https://sun9-77.userapi.com/impg/HJquvixJDUoQ1Z78ZHfU_kr-w9Lf0yamaP-DCQ/VDPE0j1FlhU.jpg?size=900x1600&quality=95&sign=f5ed202bcf80d5002f0c89bcfd79d523&type=album"
+        class="select-none !pointer-events-none w-[200px] h-[200px] object-cover object-top" />
+      <div class="card-body">
+        <h5 class="card-title text-center font-bold h5 underline text-white">{{ username }}</h5>
+      </div>
+    </div>
+    <div></div>
+    <div></div>
+  </section>
+</main>
+{% endblock %}
