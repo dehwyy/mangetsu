@@ -1,0 +1,30 @@
+{% extends "layout@base.html" %}
+
+{% block content %}
+<main class="min-h-screen w-screen py-20">
+  <section class="max-w-[95%] w-[600px] flex flex-col gap-y-20 mx-auto">
+    <div class="w-full max-w-[400px] mx-auto">
+      <form method="get" class="flex gap-x-3">
+        <input value="{{ query }}"
+          class="form-control w-full bg-black !border-[#0d6efd] focus:bg-black !shadow-black shadow-xl transition-all !font-bold !text-white !font-mono text-xl"
+          type="text" name="search" id="search" placeholder="Search anime..." />
+        <button class="btn btn-primary font-bold" type="submit">Search</button>
+      </form>
+    </div>
+    <section class="flex flex-col gap-y-5">
+      {% for anime in animes %}
+      <article
+        class="min-w-[250px] bg-gradient-to-l from-[rgba(13,110,253,0.3)] to-[rgba(102,16,242,0.3)] flex md:gap-x-10 gap-x-5 items-center py-3 md:px-5 px-3 rounded-2xl shadow-xl shadow-black hover:shadow-[#0d6efd] transition-all">
+        <div class="overflow-hidden min-w-[100px] w-[100px]">
+          <img class="w-full" src={{ anime.image }} />
+        </div>
+        <p class="font-bold text-white text-lg font-mono flex-auto">
+          <span class="underline ">{{ anime.name }}</span> ({{anime.score}})
+        </p>
+        <button class="btn btn-primary font-bold">Add</button>
+      </article>
+      {% endfor %}
+    </section>
+  </section>
+</main>
+{% endblock %}

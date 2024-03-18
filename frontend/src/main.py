@@ -1,4 +1,6 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
+from api.request_builder import RequestBuilder
+from api.shikimori import ShikimoriOrderBy
 
 app = Flask(__name__)
 
@@ -11,6 +13,14 @@ class Routes:
   @app.route("/")
   def index():
     return render_template("index.html")
+
+  @app.route("/animes")
+  def animes():
+    query = request.args.get("search")
+    query = query if query else ""
+    animes = RequestBuilder().shikimori().with_query(query).with_order_by(ShikimoriOrderBy.Rank).with_limit(10).finish().animes()
+
+    return render_template("animes.html", animes=animes, query=query)
 
   @app.route('/users')
   def users():
