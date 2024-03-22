@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark" class="min-w-[250px]">
 
 <head>
   <meta charset="UTF-8">
@@ -10,10 +10,83 @@
   <title>Mangetsu</title>
 </head>
 
-{% block header %}{% endblock %}
+<style>
+  .menu__invisible {
+    opacity: 0;
+    visibility: hidden;
+  }
 
-<body class="bg-gradient-to-bl from-black from-40% via-[#0d6efd] via-75% to-[#6610f2] overflow-x-hidden">
+  ::-webkit-scrollbar {
+    width: 1vw;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #222222;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c1c1c1;
+  }
+</style>
+
+<body class="bg-gradient-to-bl from-black from-40% via-[#0d6efd] via-75% to-[#6610f2] overflow-x-hidden min-w-[250px]">
+  <header class="fixed left-0 top-0 right-0">
+    <section
+      class="h-[60px] w-full flex justify-between items-center px-[0.5rem] sm:px-10 gap-x-2 bg-gradient-to-t from-[#111111] shadow-xl shadow-[RGBA(13,110,253,0.5)] to-black">
+      <a href="/">
+        <p class="text-3xl font-bold font-mono underline text-[#6610f2] hover:text-[#0d6efd] transition-all">Mangetsu
+        </p>
+      </a>
+      <div class="relative grid place-items-center">
+        <section id="menu"
+          class="menu__invisible w-[95vw] sm:w-auto transition-all duration-300 absolute right-0 top-10 bg-[#111111] shadow-xl shadow-[RGBA(13,110,253,0.5)] py-4 border-blue-500 border-2 rounded-xl">
+          <ul class="flex flex-col gap-y-3 text-white font-mono [&>li>a]:transition-all [&>li]:px-5 px-1 text-center">
+            <li>
+              <a href="/api/oauth2/github">Authenticate</a>
+            </li>
+            <hr />
+            <li>
+              <a href="/users">Users</a>
+            </li>
+            <hr />
+            <li>
+              <a href="/animes">Animes</a>
+            </li>
+            <hr />
+            <li>
+              <a href="/characters">Characters</a>
+            </li>
+          </ul>
+        </section>
+        <button class="cursor-pointer focus:outline-none" id="menu-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 8l16 0" />
+            <path d="M4 16l16 0" />
+          </svg>
+        </button>
+      </div>
+    </section>
+  </header>
   {% block content %}{% endblock %}
 </body>
+
+<script>
+  const menuButton = document.querySelector('#menu-button');
+  const menu = document.querySelector('#menu');
+
+  menuButton.addEventListener('click', () => {
+    menu.classList.toggle("menu__invisible");
+  });
+
+</script>
+
+
 
 </html>
