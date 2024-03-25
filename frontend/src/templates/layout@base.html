@@ -35,7 +35,7 @@
 </style>
 
 <body class="bg-gradient-to-bl from-black from-40% via-[#0d6efd] via-75% to-[#6610f2] overflow-x-hidden min-w-[250px]">
-  <header class="fixed left-0 top-0 right-0">
+  <header class="fixed left-0 top-0 right-0 z-50">
     <section
       class="h-[60px] w-full flex justify-between items-center px-[0.5rem] sm:px-10 gap-x-2 bg-gradient-to-t from-[#111111] shadow-xl shadow-[RGBA(13,110,253,0.5)] to-black">
       <a href="/">
@@ -83,6 +83,12 @@
 
   menuButton.addEventListener('click', () => {
     menu.classList.toggle("menu__invisible");
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!menu.contains(event.target) && !menuButton.contains(event.target)) {
+      menu.classList.add("menu__invisible");
+    }
   });
 
 </script>

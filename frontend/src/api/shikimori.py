@@ -12,6 +12,11 @@ class ShikimoriApi:
       self.image = "https://shikimori.one" + r["image"]["original"]
       self.score = r["score"]
 
+  class CharacterResponse():
+    def __init__(self, r: dict[str, any]):
+      self.id = r["id"]
+      self.name = r["name"]
+      self.image = "https://shikimori.one" + r["image"]["original"]
 
 
   def __init__(self, base_url: str, query_params: dict[str, str]):
@@ -30,6 +35,12 @@ class ShikimoriApi:
     response = list(map(lambda anime: self.AnimeResponse(anime), response.json()))
     return response
 
+  def characters(self):
+    url = self.base_url + "/characters/search"
+    response = r.get(url, params=self.query_params, headers=self.headers)
+
+    response = list(map(lambda character: self.CharacterResponse(character), response.json()))
+    return response
 
 class ShikimoriOrderBy(Enum):
   Id = "id"

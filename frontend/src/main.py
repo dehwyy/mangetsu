@@ -22,6 +22,19 @@ class Routes:
 
     return render_template("animes.html", animes=animes, query=query)
 
+  @app.route("/characters")
+  def characters():
+    query = request.args.get("search")
+    query = query if query else ""
+
+    characters = RequestBuilder().shikimori().with_query(query).finish().characters()
+
+    # max lenngth = 10
+    characters = characters[:10] if len(characters) > 10 else characters
+
+
+    return render_template("characters.html", characters=characters, characters_found=len(characters) != 0, query=query)
+
   @app.route('/users')
   def users():
     # perform api request
@@ -33,8 +46,16 @@ class Routes:
 
   @app.route("/user/<username>")
   def user(username: str):
-    # perfrom api request
-    return render_template("user.html", username=username)
+    items = []
+
+    query = request.args.get("s")
+    if query == "animes":
+      items = RequestBuilder().shikimori().with_order_by(ShikimoriOrderBy.Rank).with_limit(5).finish().animes()
+    else:
+      # TODO
+      items = RequestBuilder().shikimori().with_query("kiyotaka").finish().characters()
+
+    return render_template("user.html", username=username, items=items)
 
   @app.route("/api/oauth2/github")
   def github():
